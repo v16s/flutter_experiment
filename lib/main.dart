@@ -6,21 +6,25 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    String appName = 'Flutter Experiment';
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+      title: appName,
+      theme: new ThemeData(
+        backgroundColor: Colors.black,
+        primaryColor: Colors.black,
+        accentColor: Colors.cyan[600],
+        fontFamily: 'Montserrat',
+        scaffoldBackgroundColor: Colors.black,
+
+        textTheme: TextTheme(
+            headline: TextStyle(fontSize: 72, fontWeight: FontWeight.bold),
+            title: TextStyle(fontSize: 36, fontStyle: FontStyle.italic),
+            body1: TextStyle(
+                fontSize: 14,
+                fontFamily: 'Roboto Mono',
+                color: Colors.white)), // new
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: appName),
     );
   }
 }
@@ -92,12 +96,9 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
+              'Hello',
+              style: TextStyle(fontSize: 50, fontFamily: 'Google Sans'),
+            )
           ],
         ),
       ),
