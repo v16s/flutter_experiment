@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'card.dart';
 
 void main() => runApp(MyApp());
 
@@ -93,18 +94,18 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'Hello',
-              style: TextStyle(fontSize: 50, fontFamily: 'Google Sans'),
+            PostCard(
+              title: 'Post 1',
+              description: 'Test 123',
             )
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        tooltip: 'New Post',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
