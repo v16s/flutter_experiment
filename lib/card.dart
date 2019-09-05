@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class PostCard extends StatelessWidget {
-  PostCard({Key key, this.title, this.description}) : super(key: key);
+  PostCard({Key key, this.title, this.description, this.icon})
+      : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -11,6 +12,7 @@ class PostCard extends StatelessWidget {
   // case the title) provided by the parent (in this case the App widget) and
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
+  final Icon icon;
   final String description;
   final String title;
 
@@ -23,12 +25,19 @@ class PostCard extends StatelessWidget {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Card(
+      color: Color.fromARGB(255, 24, 24, 24),
       child: Column(
         children: <Widget>[
           ListTile(
-            leading: Icon(Icons.book),
-            title: Text(title),
-            subtitle: Text(description),
+            leading: icon,
+            title: Text(
+              title,
+              style: TextStyle(color: Colors.white),
+            ),
+            subtitle: Text(
+              description,
+              style: TextStyle(color: Colors.white70),
+            ),
           ),
           ButtonTheme.bar(
             child: ButtonBar(

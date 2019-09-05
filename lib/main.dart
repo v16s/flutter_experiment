@@ -48,19 +48,20 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class Post {
+  Post({Key key, this.title, this.description, this.icon});
+  String title, description;
+  Icon icon;
+}
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class _MyHomePageState extends State<MyHomePage> {
+  var posts = [1, 2, 3, 4, 5, 6, 7].map((number) => Post(
+      title: "Post ${number.toString()}",
+      description: "Description of post ${number.toString()}",
+      icon: Icon(
+        Icons.person,
+        color: Colors.cyan,
+      )));
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
+        child: ListView(
           // Column is also layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -94,17 +95,16 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            PostCard(
-              title: 'Post 1',
-              description: 'Test 123',
-            )
-          ],
+          children: posts
+              .map((post) => PostCard(
+                    title: post.title,
+                    description: post.description,
+                    icon: post.icon,
+                  ))
+              .toList(),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
         tooltip: 'New Post',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
