@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'views/home.dart';
-import 'views/login.dart';
+import 'views/index.dart';
+import 'themes/index.dart';
 
 void main() => runApp(App());
 
@@ -18,6 +18,13 @@ class _AppState extends State<App> {
     });
   }
 
+  int currentTheme = 0;
+  void _setCurrentTheme(int theme) {
+    setState(() {
+      currentTheme = theme;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     String appName = 'Flutter Experiment';
@@ -25,29 +32,14 @@ class _AppState extends State<App> {
       title: appName,
       initialRoute: '/',
       routes: {
-        '/': (context) => isLoggedIn
+        '/': (context) => !isLoggedIn
             ? HomePage(
                 title: appName,
               )
             : LoginPage(_login),
       },
 
-      theme: new ThemeData(
-        backgroundColor: Colors.black,
-        primaryColor: Colors.black,
-        accentColor: Colors.cyan[600],
-        fontFamily: 'Montserrat',
-        scaffoldBackgroundColor: Colors.black,
-        brightness: Brightness.dark,
-        canvasColor: Colors.black,
-        textTheme: TextTheme(
-            headline: TextStyle(fontSize: 72, fontWeight: FontWeight.bold),
-            title: TextStyle(fontSize: 36, fontStyle: FontStyle.italic),
-            body1: TextStyle(
-                fontSize: 14,
-                fontFamily: 'Roboto Mono',
-                color: Colors.white)), // new
-      ),
+      theme: AMOLEDTheme,
       // home: HomePage(title: appName),
     );
   }

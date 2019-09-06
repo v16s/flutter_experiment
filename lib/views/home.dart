@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'list.dart';
+import 'package:flutter/rendering.dart';
 import '../types/posts.dart';
-import '../components/drawer.dart';
+import '../components/index.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -31,7 +31,38 @@ class _HomePageState extends State<HomePage> {
             color: Colors.cyan,
           )))
       .toList();
+  ScrollController _viewController = new ScrollController();
+  void _scrollListener() async {
+    _viewController.addListener(() {
+      print(_viewController.position.userScrollDirection);
+      if (_viewController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
+        if (!hide) {
+          hide = true;
+        }
+      }
+      if (_viewController.position.userScrollDirection ==
+          ScrollDirection.forward) {
+        if (hide) {
+          hide = false;
+        }
+      }
+    });
+  }
 
+  @override
+  void initState() {
+    super.initState();
+    _scrollListener();
+  }
+
+  @override
+  void dispose() {
+    _viewController.removeListener(() {});
+    super.dispose();
+  }
+
+  bool hide = false;
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -42,9 +73,7 @@ class _HomePageState extends State<HomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the HomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text('Home'),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -53,13 +82,15 @@ class _HomePageState extends State<HomePage> {
           posts: posts,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        tooltip: 'New Post',
-        child: Icon(Icons.add),
-        onPressed: () {},
-      ),
-      drawer:
-          PostDrawer(), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: !hide
+          ? FloatingActionButton(
+              child: Icon(Icons.create),
+              onPressed: () {},
+            )
+          : null,
+      bottomNavigationBar: !hide ? NavBar() : null,
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

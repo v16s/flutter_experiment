@@ -25,22 +25,20 @@ class PostCard extends StatelessWidget {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Card(
-      color: Color.fromARGB(255, 24, 24, 24),
       child: Column(
         children: <Widget>[
           ListTile(
             leading: icon,
             title: Text(
               title,
-              style: TextStyle(color: Colors.white),
             ),
             subtitle: Text(
               description,
-              style: TextStyle(color: Colors.white70),
             ),
           ),
           ButtonTheme.bar(
             child: ButtonBar(
+              mainAxisSize: MainAxisSize.max,
               children: <Widget>[
                 FlatButton(
                   child: Icon(Icons.arrow_upward),

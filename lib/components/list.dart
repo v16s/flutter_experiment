@@ -2,9 +2,16 @@ import '../components/card.dart';
 import 'package:flutter/material.dart';
 import '../types/posts.dart';
 
-class PostList extends StatelessWidget {
-  PostList({Key key, this.posts}) : super(key: key);
+class PostList extends StatefulWidget {
   final List<PostType> posts;
+
+  PostList({Key key, this.posts}) : super(key: key);
+
+  @override
+  PostListState createState() => PostListState();
+}
+
+class PostListState extends State<PostList> {
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -22,7 +29,7 @@ class PostList extends StatelessWidget {
       // center the children vertically; the main axis here is the vertical
       // axis because Columns are vertical (the cross axis would be
       // horizontal).
-      children: posts
+      children: widget.posts
           .map((post) => PostCard(
                 title: post.title,
                 description: post.description,
