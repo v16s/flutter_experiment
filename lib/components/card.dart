@@ -42,14 +42,14 @@ class PostCard extends StatelessWidget {
           ButtonTheme.bar(
             child: ButtonBar(
               children: <Widget>[
-                FlatButton.icon(
-                  icon: Icon(Icons.arrow_upward),
-                  label: Text('Upvote'),
+                FlatButton(
+                  child: Icon(Icons.arrow_upward),
+                  shape: new CircleBorder(),
                   onPressed: () {},
                 ),
-                FlatButton.icon(
-                  icon: Icon(Icons.arrow_downward),
-                  label: Text('Downvote'),
+                FlatButton(
+                  child: Icon(Icons.arrow_downward),
+                  shape: new CircleBorder(),
                   onPressed: () {},
                 )
               ],
