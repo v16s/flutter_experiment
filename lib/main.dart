@@ -4,8 +4,20 @@ import 'views/login.dart';
 
 void main() => runApp(App());
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   // This widget is the root of your application.
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  bool isLoggedIn = false;
+  void _login() {
+    setState(() {
+      isLoggedIn = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     String appName = 'Flutter Experiment';
@@ -13,10 +25,11 @@ class App extends StatelessWidget {
       title: appName,
       initialRoute: '/',
       routes: {
-        '/': (context) => HomePage(
-              title: appName,
-            ),
-        '/login': (context) => LoginPage()
+        '/': (context) => isLoggedIn
+            ? HomePage(
+                title: appName,
+              )
+            : LoginPage(_login),
       },
 
       theme: new ThemeData(
