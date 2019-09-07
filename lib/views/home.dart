@@ -32,33 +32,34 @@ class _HomePageState extends State<HomePage> {
           )))
       .toList();
   ScrollController _viewController = new ScrollController();
-  void _scrollListener() async {
+
+  @override
+  void initState() {
+    print('adding listener');
     _viewController.addListener(() {
-      print(_viewController.position.userScrollDirection);
       if (_viewController.position.userScrollDirection ==
           ScrollDirection.reverse) {
-        if (!hide) {
-          hide = true;
+        if (hide == false) {
+          setState(() {
+            hide = true;
+          });
         }
       }
       if (_viewController.position.userScrollDirection ==
           ScrollDirection.forward) {
-        if (hide) {
-          hide = false;
+        if (hide == true) {
+          setState(() {
+            hide = false;
+          });
         }
       }
     });
-  }
-
-  @override
-  void initState() {
     super.initState();
-    _scrollListener();
   }
 
   @override
   void dispose() {
-    _viewController.removeListener(() {});
+    _viewController.dispose();
     super.dispose();
   }
 
@@ -72,14 +73,17 @@ class _HomePageState extends State<HomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-      ),
+      appBar: !hide
+          ? AppBar(
+              title: Text('Home'),
+            )
+          : null,
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: PostList(
           posts: posts,
+          controller: _viewController,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

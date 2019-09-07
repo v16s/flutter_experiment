@@ -5,8 +5,8 @@ import '../types/posts.dart';
 class PostList extends StatefulWidget {
   final List<PostType> posts;
 
-  PostList({Key key, this.posts}) : super(key: key);
-
+  PostList({Key key, this.posts, this.controller}) : super(key: key);
+  final ScrollController controller;
   @override
   PostListState createState() => PostListState();
 }
@@ -15,6 +15,7 @@ class PostListState extends State<PostList> {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      controller: widget.controller,
       // Column is also layout widget. It takes a list of children and
       // arranges them vertically. By default, it sizes itself to fit its
       // children horizontally, and tries to be as tall as its parent.

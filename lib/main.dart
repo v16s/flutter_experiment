@@ -13,6 +13,7 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   bool isLoggedIn = false;
   void _login() {
+    print('logging in');
     setState(() {
       isLoggedIn = true;
     });
