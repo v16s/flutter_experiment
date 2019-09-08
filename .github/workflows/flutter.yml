@@ -11,6 +11,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - uses: ~/.workdir
       - name: Install dependencies
         run: flutter packages get
       - name: Run tests
