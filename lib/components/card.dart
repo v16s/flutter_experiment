@@ -24,37 +24,41 @@ class PostCard extends StatelessWidget {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Card(
-      child: Column(
-        children: <Widget>[
-          ListTile(
-            leading: icon,
-            title: Text(
-              title,
-            ),
-            subtitle: Text(
-              description,
-            ),
-          ),
-          ButtonTheme.bar(
-            child: ButtonBar(
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                FlatButton(
-                  child: Icon(Icons.arrow_upward),
-                  shape: new CircleBorder(),
-                  onPressed: () {},
+    return InkWell(
+        child: Card(
+          child: Column(
+            children: <Widget>[
+              ListTile(
+                leading: icon,
+                title: Text(
+                  title,
                 ),
-                FlatButton(
-                  child: Icon(Icons.arrow_downward),
-                  shape: new CircleBorder(),
-                  onPressed: () {},
-                )
-              ],
-            ),
-          )
-        ],
-      ),
-    );
+                subtitle: Text(
+                  description,
+                ),
+              ),
+              ButtonTheme.bar(
+                child: ButtonBar(
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    FlatButton(
+                      child: Icon(Icons.arrow_upward),
+                      shape: new CircleBorder(),
+                      onPressed: () {},
+                    ),
+                    FlatButton(
+                      child: Icon(Icons.arrow_downward),
+                      shape: new CircleBorder(),
+                      onPressed: () {},
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+        onTap: () {
+          Navigator.pushNamed(context, '/post');
+        });
   }
 }

@@ -38,6 +38,7 @@ class _AppState extends State<App> {
                 title: appName,
               )
             : LoginPage(_login),
+        '/post': (context) => PostView()
       },
 
       theme: AMOLEDTheme,
